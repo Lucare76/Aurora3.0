@@ -1,0 +1,521 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Aurora 3.0 Color Palette */
+  --primary-dark: #2c3e50;
+  --primary-blue: #3b4c6b;
+  --secondary-blue: #4a5f7a;
+  --accent-green: #10b981;
+  --accent-red: #ef4444;
+  --accent-blue: #3b82f6;
+  --accent-orange: #f59e0b;
+  --light-gray: #f8fafc;
+  --medium-gray: #64748b;
+  --dark-gray: #334155;
+  --white: #ffffff;
+  --border-color: #e2e8f0;
+  --success: #10b981;
+  --danger: #ef4444;
+  --warning: #f59e0b;
+  --info: #3b82f6;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: var(--light-gray);
+  color: var(--dark-gray);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Modern scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--medium-gray);
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--dark-gray);
+}
+
+/* Aurora 3.0 Layout */
+@layer components {
+  .aurora-app {
+    @apply min-h-screen flex flex-col;
+    background-color: var(--light-gray);
+  }
+  
+  /* Header */
+  .aurora-header {
+    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-blue) 100%);
+    @apply px-6 py-4 flex items-center justify-between;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .aurora-header-left {
+    @apply flex items-center gap-4;
+  }
+  
+  .aurora-logo {
+    @apply flex items-center gap-3;
+  }
+  
+  .aurora-logo-icon {
+    @apply w-8 h-8 rounded-lg flex items-center justify-center text-white font-bold;
+    background: linear-gradient(135deg, var(--accent-green), var(--accent-blue));
+  }
+  
+  .aurora-logo-text h1 {
+    @apply text-xl font-bold text-white;
+  }
+  
+  .aurora-logo-text p {
+    @apply text-sm text-blue-200;
+  }
+  
+  .aurora-header-right {
+    @apply flex items-center gap-4;
+  }
+  
+  .aurora-header-icons {
+    @apply flex items-center gap-3;
+  }
+  
+  .aurora-header-icon {
+    @apply w-9 h-9 rounded-lg flex items-center justify-center text-blue-200 hover:text-white hover:bg-white/10 transition-all duration-200 cursor-pointer;
+  }
+  
+  .aurora-user-info {
+    @apply flex items-center gap-3;
+  }
+  
+  .aurora-user-avatar {
+    @apply w-9 h-9 rounded-full flex items-center justify-center text-white font-semibold text-sm;
+    background: linear-gradient(135deg, var(--accent-green), var(--accent-blue));
+  }
+  
+  .aurora-user-details h3 {
+    @apply text-sm font-semibold text-white;
+  }
+  
+  .aurora-user-details p {
+    @apply text-xs text-blue-200;
+  }
+  
+  /* Status Bar */
+  .aurora-status-bar {
+    background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+    @apply px-6 py-2 flex items-center justify-between text-sm;
+  }
+  
+  .aurora-status-left {
+    @apply flex items-center gap-6 text-blue-200;
+  }
+  
+  .aurora-status-item {
+    @apply flex items-center gap-2;
+  }
+  
+  .aurora-status-dot {
+    @apply w-2 h-2 rounded-full;
+    background-color: var(--accent-green);
+  }
+  
+  .aurora-status-right {
+    @apply text-blue-200;
+  }
+  
+  /* Main Layout */
+  .aurora-main-layout {
+    @apply flex flex-1;
+  }
+  
+  /* Sidebar */
+  .aurora-sidebar {
+    @apply w-64 bg-white border-r border-gray-200 flex flex-col;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
+  }
+  
+  .aurora-assistant-card {
+    @apply p-4 m-4 rounded-xl border border-gray-200 bg-gradient-to-br from-blue-50 to-green-50;
+  }
+  
+  .aurora-assistant-header {
+    @apply flex items-center gap-3 mb-3;
+  }
+  
+  .aurora-assistant-avatar {
+    @apply w-10 h-10 rounded-full;
+  }
+  
+  .aurora-assistant-info h4 {
+    @apply font-semibold text-gray-900;
+  }
+  
+  .aurora-assistant-info p {
+    @apply text-sm text-gray-600;
+  }
+  
+  .aurora-assistant-message {
+    @apply text-sm text-gray-700 bg-white/60 rounded-lg p-3 border border-white/40;
+  }
+  
+  .aurora-sidebar-menu {
+    @apply flex-1 px-3 py-2;
+  }
+  
+  .aurora-menu-section {
+    @apply mb-6;
+  }
+  
+  .aurora-menu-title {
+    @apply text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3 px-3;
+  }
+  
+  .aurora-menu-items {
+    @apply space-y-1;
+  }
+  
+  .aurora-menu-item {
+    @apply flex items-center gap-3 px-3 py-2 rounded-lg text-gray-700 hover:bg-gray-100 transition-all duration-200 cursor-pointer;
+  }
+  
+  .aurora-menu-item.active {
+    @apply bg-blue-50 text-blue-700 font-medium;
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(16, 185, 129, 0.1));
+  }
+  
+  .aurora-menu-icon {
+    @apply w-5 h-5 flex-shrink-0;
+  }
+  
+  .aurora-menu-text {
+    @apply flex-1;
+  }
+  
+  .aurora-menu-badge {
+    @apply bg-red-100 text-red-600 text-xs px-2 py-1 rounded-full font-medium;
+  }
+  
+  /* Main Content */
+  .aurora-content {
+    @apply flex-1 p-6 overflow-auto;
+  }
+  
+  .aurora-page-header {
+    @apply mb-6;
+  }
+  
+  .aurora-page-title {
+    @apply text-2xl font-bold text-gray-900 mb-1;
+  }
+  
+  .aurora-page-subtitle {
+    @apply text-gray-600;
+  }
+  
+  /* Cards */
+  .aurora-card {
+    @apply bg-white rounded-xl border border-gray-200 p-6 transition-all duration-200;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  }
+  
+  .aurora-card:hover {
+    @apply shadow-lg;
+    transform: translateY(-2px);
+  }
+  
+  .aurora-main-balance-card {
+    @apply mb-6;
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(34, 197, 94, 0.05) 100%);
+    border: 1px solid rgba(16, 185, 129, 0.2);
+  }
+  
+  .aurora-balance-header {
+    @apply flex items-center gap-3 mb-4;
+  }
+  
+  .aurora-balance-icon {
+    @apply text-2xl;
+  }
+  
+  .aurora-balance-title {
+    @apply text-lg font-semibold text-gray-900;
+  }
+  
+  .aurora-balance-amount {
+    @apply text-3xl font-bold mb-2;
+    color: var(--accent-green);
+  }
+  
+  .aurora-balance-subtitle {
+    @apply text-gray-600 text-sm;
+  }
+  
+  .aurora-balance-icon-right {
+    @apply absolute top-4 right-4 text-4xl opacity-20;
+  }
+  
+  /* Stats Grid */
+  .aurora-stats-grid {
+    @apply grid grid-cols-1 md:grid-cols-3 gap-6 mb-8;
+  }
+  
+  .aurora-stat-card {
+    @apply relative;
+  }
+  
+  .aurora-stat-header {
+    @apply flex items-center justify-between mb-4;
+  }
+  
+  .aurora-stat-title {
+    @apply font-semibold text-gray-900;
+  }
+  
+  .aurora-stat-icon {
+    @apply w-8 h-8 rounded-lg flex items-center justify-center;
+  }
+  
+  .aurora-stat-amount {
+    @apply text-2xl font-bold mb-1;
+  }
+  
+  .aurora-stat-subtitle {
+    @apply text-sm text-gray-600;
+  }
+  
+  .aurora-stat-balance .aurora-stat-icon {
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(16, 185, 129, 0.1));
+    @apply text-blue-600;
+  }
+  
+  .aurora-stat-balance .aurora-stat-amount {
+    color: var(--accent-green);
+  }
+  
+  .aurora-stat-income .aurora-stat-icon {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(34, 197, 94, 0.1));
+    @apply text-green-600;
+  }
+  
+  .aurora-stat-income .aurora-stat-amount {
+    color: var(--accent-green);
+  }
+  
+  .aurora-stat-expense .aurora-stat-icon {
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(220, 38, 38, 0.1));
+    @apply text-red-600;
+  }
+  
+  .aurora-stat-expense .aurora-stat-amount {
+    color: var(--accent-red);
+  }
+  
+  /* Widget Section */
+  .aurora-widget-section {
+    @apply mb-8;
+  }
+  
+  .aurora-widget-header {
+    @apply flex items-center gap-3 mb-4;
+  }
+  
+  .aurora-widget-title {
+    @apply text-lg font-semibold text-gray-900;
+  }
+  
+  .aurora-widget-grid {
+    @apply grid grid-cols-1 md:grid-cols-4 gap-4;
+  }
+  
+  .aurora-widget-card {
+    @apply bg-white rounded-lg border border-gray-200 p-4 text-center transition-all duration-200 cursor-pointer;
+  }
+  
+  .aurora-widget-card:hover {
+    @apply shadow-md;
+    transform: translateY(-1px);
+  }
+  
+  .aurora-widget-card.disabled {
+    @apply bg-gray-50 cursor-not-allowed;
+  }
+  
+  .aurora-widget-card.reset {
+    @apply bg-red-50 border-red-200 text-red-700;
+  }
+  
+  .aurora-widget-icon {
+    @apply text-2xl mb-2;
+  }
+  
+  .aurora-widget-text {
+    @apply text-sm font-medium;
+  }
+  
+  .aurora-widget-status {
+    @apply text-xs text-gray-500 mt-1;
+  }
+  
+  /* Budget Section */
+  .aurora-budget-section {
+    @apply mb-8;
+  }
+  
+  .aurora-budget-header {
+    @apply flex items-center justify-between mb-4;
+  }
+  
+  .aurora-budget-title {
+    @apply flex items-center gap-3 text-lg font-semibold text-gray-900;
+  }
+  
+  .aurora-budget-status {
+    @apply text-sm font-medium px-3 py-1 rounded-full;
+    background-color: rgba(16, 185, 129, 0.1);
+    color: var(--accent-green);
+  }
+  
+  .aurora-budget-grid {
+    @apply grid grid-cols-1 md:grid-cols-4 gap-6;
+  }
+  
+  .aurora-budget-card {
+    @apply text-center;
+  }
+  
+  .aurora-budget-label {
+    @apply text-sm text-gray-600 mb-2;
+  }
+  
+  .aurora-budget-amount {
+    @apply text-xl font-bold mb-1;
+  }
+  
+  .aurora-budget-income .aurora-budget-amount {
+    color: var(--accent-green);
+  }
+  
+  .aurora-budget-expense .aurora-budget-amount {
+    color: var(--accent-red);
+  }
+  
+  .aurora-budget-balance .aurora-budget-amount {
+    color: var(--accent-green);
+  }
+  
+  .aurora-budget-savings .aurora-budget-amount {
+    color: var(--accent-blue);
+  }
+  
+  .aurora-budget-subtitle {
+    @apply text-xs text-gray-500;
+  }
+  
+  .aurora-budget-progress {
+    @apply text-xs text-gray-500 mt-2;
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideRight {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.6s ease-out;
+}
+
+.animate-slide-right {
+  animation: slideRight 0.6s ease-out;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .aurora-sidebar {
+    @apply hidden;
+  }
+  
+  .aurora-stats-grid {
+    @apply grid-cols-1;
+  }
+  
+  .aurora-widget-grid {
+    @apply grid-cols-2;
+  }
+  
+  .aurora-budget-grid {
+    @apply grid-cols-2;
+  }
+  
+  .aurora-header {
+    @apply px-4 py-3;
+  }
+  
+  .aurora-content {
+    @apply p-4;
+  }
+}
+
+@media (max-width: 480px) {
+  .aurora-header-right .aurora-user-details {
+    @apply hidden;
+  }
+  
+  .aurora-widget-grid {
+    @apply grid-cols-1;
+  }
+  
+  .aurora-budget-grid {
+    @apply grid-cols-1;
+  }
+}
