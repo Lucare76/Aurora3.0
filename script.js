@@ -9,9 +9,6 @@ class BudgetApp {
 
     init() {
         this.setupEventListeners();
-        this.updateStats();
-        this.renderTransactions();
-        this.initCharts();
         this.updateDateTime();
         this.loadDashboardPage();
         this.hideLoadingScreen();
@@ -225,7 +222,7 @@ class BudgetApp {
                 <div class="lg:col-span-2 bg-white/80 backdrop-blur-xl p-6 rounded-xl shadow-lg border border-white/20">
                     <div class="flex items-center justify-between mb-6">
                         <h3 class="text-lg font-semibold text-gray-900">Transazioni Recenti</h3>
-                        <button class="text-blue-600 hover:text-blue-700 text-sm font-medium">Vedi tutte</button>
+                        <button onclick="dashboard.switchPage('transactions')" class="text-blue-600 hover:text-blue-700 text-sm font-medium">Vedi tutte</button>
                     </div>
                     <div id="transactions-list" class="space-y-3">
                         <!-- Transactions will be loaded here -->
@@ -283,34 +280,6 @@ class BudgetApp {
         }, 100);
     }
 
-    loadAnalyticsPage() {
-        const content = document.getElementById('page-content');
-        if (!content) return;
-
-        content.innerHTML = `
-            <div class="space-y-8">
-                <div class="bg-white/80 backdrop-blur-xl p-6 rounded-xl shadow-lg border border-white/20">
-                    <h3 class="text-lg font-semibold text-gray-900 mb-4">Analytics Avanzate</h3>
-                    <p class="text-gray-600">Sezione in sviluppo - Analytics dettagliate delle tue finanze</p>
-                </div>
-            </div>
-        `;
-    }
-
-    loadPortfolioPage() {
-        const content = document.getElementById('page-content');
-        if (!content) return;
-
-        content.innerHTML = `
-            <div class="space-y-8">
-                <div class="bg-white/80 backdrop-blur-xl p-6 rounded-xl shadow-lg border border-white/20">
-                    <h3 class="text-lg font-semibold text-gray-900 mb-4">Portfolio</h3>
-                    <p class="text-gray-600">Sezione in sviluppo - Gestione del tuo portfolio investimenti</p>
-                </div>
-            </div>
-        `;
-    }
-
     loadTransactionsPage() {
         const content = document.getElementById('page-content');
         if (!content) return;
@@ -338,6 +307,34 @@ class BudgetApp {
             }
             this.renderAllTransactions();
         }, 100);
+    }
+
+    loadAnalyticsPage() {
+        const content = document.getElementById('page-content');
+        if (!content) return;
+
+        content.innerHTML = `
+            <div class="space-y-8">
+                <div class="bg-white/80 backdrop-blur-xl p-6 rounded-xl shadow-lg border border-white/20">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-4">Analytics Avanzate</h3>
+                    <p class="text-gray-600">Sezione in sviluppo - Analytics dettagliate delle tue finanze</p>
+                </div>
+            </div>
+        `;
+    }
+
+    loadPortfolioPage() {
+        const content = document.getElementById('page-content');
+        if (!content) return;
+
+        content.innerHTML = `
+            <div class="space-y-8">
+                <div class="bg-white/80 backdrop-blur-xl p-6 rounded-xl shadow-lg border border-white/20">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-4">Portfolio</h3>
+                    <p class="text-gray-600">Sezione in sviluppo - Gestione del tuo portfolio investimenti</p>
+                </div>
+            </div>
+        `;
     }
 
     loadBudgetPage() {
