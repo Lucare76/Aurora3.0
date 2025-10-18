@@ -1,0 +1,115 @@
+/* Struttura base */
+.sidebar {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 260px;
+  background: #0f172a;           /* blu notte */
+  color: #e5e7eb;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid rgba(255,255,255,0.08);
+  transition: width 0.2s ease;
+  z-index: 50;
+}
+
+.sidebar.collapsed { width: 78px; }
+.sidebar.open { transform: translateX(0); }
+
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 10px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+}
+
+.brand-icon { font-size: 1.25rem; }
+.brand-text { font-size: 0.95rem; }
+
+/* Bottoni */
+.sidebar-mobile-toggle,
+.sidebar-collapse-toggle {
+  background: transparent;
+  color: #cbd5e1;
+  border: none;
+  padding: 6px 8px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.sidebar-mobile-toggle:hover,
+.sidebar-collapse-toggle:hover {
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+}
+
+/* Lista link */
+.sidebar-nav { padding: 10px 8px; }
+.sidebar-list { list-style: none; margin: 0; padding: 0; }
+.sidebar-item { margin: 4px 0; }
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #cbd5e1;
+  text-decoration: none;
+  padding: 10px 10px;
+  border-radius: 10px;
+  transition: background 0.15s ease, color 0.15s ease;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.sidebar-link:hover { background: rgba(255,255,255,0.07); color: #fff; }
+
+.sidebar-link.active {
+  background: linear-gradient(90deg, #2563eb33, transparent);
+  color: #fff;
+  border-left: 3px solid #60a5fa;
+  padding-left: 7px; /* compensa il bordo */
+}
+
+.link-icon { width: 22px; text-align: center; }
+.link-text { flex: 1; }
+
+/* Footer */
+.sidebar-footer {
+  margin-top: auto;
+  padding: 10px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  display: flex;
+  justify-content: flex-end;
+}
+
+.sidebar-version {
+  font-size: 0.8rem;
+  color: #94a3b8;
+}
+
+/* Mobile */
+@media (max-width: 900px) {
+  .sidebar {
+    position: fixed;
+    left: 0; top: 0; bottom: 0;
+    transform: translateX(-100%);
+    transition: transform 0.2s ease;
+    width: 260px;
+  }
+  .sidebar.open { transform: translateX(0); }
+  .sidebar-mobile-toggle { display: inline-flex; }
+}
+
+/* Desktop: nascondi toggle mobile se vuoi */
+@media (min-width: 901px) {
+  .sidebar-mobile-toggle { display: none; }
+}

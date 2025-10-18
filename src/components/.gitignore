@@ -1,0 +1,18 @@
+# Dipendenze
+/node_modules
+
+# Output di build
+/dist
+/build
+
+# Variabili d'ambiente sensibili
+.env
+.env.local
+.env.*.local
+
+# Log e cache
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.cache
+.temp
